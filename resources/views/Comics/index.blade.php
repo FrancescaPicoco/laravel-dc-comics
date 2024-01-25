@@ -19,7 +19,7 @@
                    <p><b>price: {{ $singleComics->price }}</b></p>
                    <em>sale date: {{ $singleComics->sale_date }}</em>
                </p>
-                    <a href="{{ route('comic.show', $singleComics->id) }}" class="btn btn-primary">show details</a>
+                    <a href="{{ route("comic.show", $singleComics->id) }}" class="btn btn-primary">show details</a>
                </div>
             </div>
         </div>
