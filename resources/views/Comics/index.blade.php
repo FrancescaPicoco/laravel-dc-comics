@@ -4,6 +4,7 @@
 <div class="container-sm d-flex flex-wrap">
     <div class="row m-auto">
         <h1>COMICS DC</h1>
+        <a href="{{ route("comic.create") }}" class="btn btn-primary">add your comics</a>
     </div>
     <div class="row">
         @foreach($comicsItems as $singleComics)  {{--comicsItems è il nome nella function index--}}
