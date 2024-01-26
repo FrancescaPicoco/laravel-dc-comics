@@ -75,7 +75,7 @@ class ComicController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Comic $comic)
-    {
+     {
         $comic->delete();
         return redirect()->route('comics.index');
     }

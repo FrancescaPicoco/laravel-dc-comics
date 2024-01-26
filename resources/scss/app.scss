@@ -1,13 +1,115 @@
 @import "~bootstrap/scss/bootstrap";
 
-body {
-    font-family: sans-serif;
-    background: #222;
-    color: white;
-}
+// body {
+//     font-family: sans-serif;
+//     background: #222;
+//     color: white;
+// }
 
-* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+// * {
+//     box-sizing: border-box;
+//     padding: 0;
+//     margin: 0;
+// }
+body{
+    background-color: rgb(28, 28, 28);
+}
+/***HEADER***/
+header{
+    background-color: aliceblue;
+}
+.headerCont{
+    width: 80vw;
+}
+section{
+    height: 10vh;
+}
+.imgHead{
+    width: 60px;
+    height: 60px;
+}
+/***JUMBOTRON***/
+#jumbo{
+    height: 50vh;
+}
+.imgJumbo{
+  object-position: top;
+  object-fit : cover;
+}
+.current{
+  background-color: rgb(2, 130, 249);
+  width: 200px;
+  height: 50px;
+  bottom:-6%;
+  left: 15%;
+}
+/***CARD***/
+.Mycard{
+ width: calc((100% / 6) - 2rem);
+ margin: 1rem;
+}
+.card-container{
+ width: 70%;
+ margin: auto;
+}
+.imgSize{
+    width: 200px;
+    height: 300px;
+    padding: 1rem;
+}
+/***SERVECIES***/
+#blueone{
+    background-color: rgb(2, 130, 249);
+}
+.container-serv{
+    width: 80vw;
+    height: 15vh;
+}
+.single-card{
+    margin: 0 1rem;
+}
+.incImg{
+    object-fit: contain;
+    background: withe;
+}
+/* span{
+    font-size: 16px;
+} */
+/***FOOTER TOP***/
+.bg-foot1{ 
+    /* width: 100%; */
+    height: 65vh;
+    /* object-fit: cover; */
+}
+.square{
+    width: 500px;
+    height: 65vh;
+    transform: translate(160% , -100%);
+}
+#footerBG{
+    height: 65vh;
+    background-image: url('../asset/img/dc-logo-bg.png');
+    position: relative;
+}
+.footer-mini-contain{
+    width: 600px;
+    height: 300px;
+    left:10%;
+    top: 10%;
+    /*float:right;
+    text-align: justify;
+    background-color: rgba(95, 158, 160, 0.395); */   
+}
+ul{
+    list-style: none;
+}
+/***FOOTER ICN***/
+/* .footerIcn-container{
+        width:80%;
+    } */
+.sizeImg{
+    width:10%;
+}
+.linkFollow{
+padding-right: 20px;
 }
