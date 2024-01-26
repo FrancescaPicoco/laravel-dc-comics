@@ -1,3 +1,3 @@
 <header>
-    <a href="{{ route("comic.index") }}" class="btn btn-primary">torna alla home</a>
+    <a href="{{ route("comics.index") }}" class="btn btn-primary">torna alla home</a>
 </header>

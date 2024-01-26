@@ -13,7 +13,7 @@ class ComicSeeder extends Seeder
      */
     public function run(): void
     {
-        $array_comics = config("comic"); //richiamo l'array nel comic.php all'interno del config
+        $array_comics = config("comic"); //richiamo l'array nel comics.php all'interno del config
         foreach($array_comics as $comic_item){
             $new_comic=new Comic();
             $new_comic->title=$comic_item['title'];

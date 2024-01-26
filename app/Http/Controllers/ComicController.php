@@ -41,7 +41,7 @@ class ComicController extends Controller
         $newComic->sale_date = $data["sale_date"];
         $newComic->save();
 
-        return redirect()->route('comic.show', $newComic->id); //comics da errore
+        return redirect()->route('comics.show', $newComic->id); //comics da errore   //per non far riaggiungere l'item piu volte al caricamento
     }
 
     /**
@@ -55,17 +55,20 @@ class ComicController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Comic $comic)
     {
-        //
+        return view('comics.edit',compact('comic'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Comic $comic)
     {
-        //
+        $data = $request->except('_token' , '_method');
+        $comic->update($data);
+
+        return redirect()->route('comics.show', $comic->id);
     }
 
     /**
