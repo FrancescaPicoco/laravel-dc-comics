@@ -14,7 +14,7 @@
                         <form action="{{route('comics.destroy', $singleComics->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" value="&#9249;" class="btn btn-outline-danger align-text-bottom">
+                            <input type="submit" value="&#9249;" class="btn btn-outline-danger align-text-bottom" onclick="myFunction(delete)">
                         </form>
                         {{-- gestisco lassenza di img del create --}}
                             @if($singleComics->thumb)

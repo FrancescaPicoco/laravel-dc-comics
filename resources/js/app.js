@@ -7,3 +7,8 @@ import * as bootstrap from 'bootstrap'
 import.meta.glob([
     '../img/**'
 ])
+
+
+function delete() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
