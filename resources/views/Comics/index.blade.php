@@ -11,18 +11,24 @@
                 {{-- comicsItems è il nome nella function index --}}
                 <div class="col-3">
                     <div class="card" style="width: 18rem;">
-                        @if($singleComics->thumb)
+                        <form action="{{route('comics.destroy', $singleComics->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="&#9249;" class="btn btn-outline-danger align-text-bottom">
+                        </form>
+                        {{-- gestisco lassenza di img del create --}}
+                            @if($singleComics->thumb)
                             <img src="{{ $singleComics->thumb }}" class="card-img-top" alt="{{ $singleComics->title }}">
                         @else
                             <img src="https://ceraduevolte.it/wp-content/uploads/2022/04/nondisponibile-15.png" class="card-img-top" alt="{{ $singleComics->title }}">
                         @endif 
-
+                        {{-- end --}}
                             <div class="card-body">
                             <h5 class="card-title">{{ $singleComics->title }}</h5>
                             <p class="card-text">
                                 {{-- <p class="card-text">{{ $singleComics->description }}</p> --}}
                                 {{-- <p>series: {{ $singleComics->series }}</p>
-                   <p>type: {{ $singleComics->type}}</p> --}}
+                                    <p>type: {{ $singleComics->type}}</p> --}}
                             <p><b>price: {{ $singleComics->price }}</b></p>
                             <em>sale date: {{ $singleComics->sale_date }}</em>
                             </p>
