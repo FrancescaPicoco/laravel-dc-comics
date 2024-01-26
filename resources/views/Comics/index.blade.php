@@ -11,11 +11,6 @@
                 <div class="col-3">
                     <div class="Mycard deleted" style="width: 18rem;">
                         <div class="card-top">
-                            <form action="{{route('comics.destroy', $singleComics->id)}}" onsubmit="" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input type="submit" value="&#9249;" class="btn btn-outline-danger align-text-bottom" id="sure">
-                            </form>
     
                             {{-- gestisco lassenza di img del create --}}
                                 @if($singleComics->thumb)
@@ -36,6 +31,11 @@
                             </p> --}}
                             <a href="{{ route('comics.show', $singleComics->id) }}" class="btn btn-outline-secondary">show details</a>
                             <a href="{{ route('comics.edit', $singleComics->id) }}" class="btn btn-outline-info">edit</a>
+                            <form action="{{route('comics.destroy', $singleComics->id)}}" onsubmit="" method="POST" class="d-inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <input type="submit" value="&#9249;" class="btn btn-outline-danger" id="sure">
+                            </form>
                         </div>
                     </div>
                 </div>
