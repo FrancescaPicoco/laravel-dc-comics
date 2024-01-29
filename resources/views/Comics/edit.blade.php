@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-sm">
+<div class="container-sm text-light">
     <form action="{{ route('comics.update',$comic->id) }}" method="POST"> {{-- deve connettersi all'update per la modifica --}}
         @csrf
         @method('PUT')
