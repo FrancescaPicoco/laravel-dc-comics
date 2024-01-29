@@ -3,10 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator; //importo il validator per usarlo nella function validation
 use App\Models\Comic;
 
 class ComicController extends Controller
 {
+
+    public function validation($data){  //metodo a parte per la validation
+        $validated = Validator::make($data,[    //accetta 3 argomenti dato da validare, primo array con regole e secondo array con messaggi
+            'title'=>'required|max:50',
+            'description'=>'required|min:20',
+            'thumb'=>'required',
+            'price'=>'required',
+            'series'=>'required|max:50',
+            'sale_date'=>'required',
+            'type'=>'required|max:50',
+        ],
+        [
+            'title.required'=>'Requisito Necessario',
+            'title.max'=>'Numero caratteri consentiti superato',
+            'description.required'=>'Requisito Necessario',
+            'description.min'=>'Numero caratteri minimi non raggiunto',
+            'thumb.required'=>'Requisito Necessario',
+            'price.required'=>'Requisito Necessario',
+            'series.required'=>'Requisito Necessario',
+            'series.max'=>'Numero caratteri consentiti superato',
+            'sale_date.required'=>'Requisito Necessario',
+            'type.required'=>'Requisito Necessario',
+            'type.max'=>'Numero caratteri consentiti superato',
+        ])->validate();
+        return validated;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -30,31 +57,32 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(
-        [
-            'title'=>'required|max:50',
-            'description'=>'required|min:20',
-            'thumb'=>'required',
-            'price'=>'required',
-            'series'=>'required|max:50',
-            'sale_date'=>'required',
-            'type'=>'required|max:50',
-        ],
-        [
-            'title.required'=>'Requisito Necessario',
-            'title.max'=>'Numero caratteri consentiti superato',
-            'description.required'=>'Requisito Necessario',
-            'description.min'=>'Numero caratteri minimi non raggiunto',
-            'thumb.required'=>'Requisito Necessario',
-            'price.required'=>'Requisito Necessario',
-            'series.required'=>'Requisito Necessario',
-            'series.max'=>'Numero caratteri consentiti superato',
-            'sale_date.required'=>'Requisito Necessario',
-            'type.required'=>'Requisito Necessario',
-            'type.max'=>'Numero caratteri consentiti superato',
-        ]
-    );
+    //     $request->validate(      sarebbe meglio creare un metodo nel controller 
+    //     [
+    //         'title'=>'required|max:50',
+    //         'description'=>'required|min:20',
+    //         'thumb'=>'required',
+    //         'price'=>'required',
+    //         'series'=>'required|max:50',
+    //         'sale_date'=>'required',
+    //         'type'=>'required|max:50',
+    //     ],
+    //     [
+    //         'title.required'=>'Requisito Necessario',
+    //         'title.max'=>'Numero caratteri consentiti superato',
+    //         'description.required'=>'Requisito Necessario',
+    //         'description.min'=>'Numero caratteri minimi non raggiunto',
+    //         'thumb.required'=>'Requisito Necessario',
+    //         'price.required'=>'Requisito Necessario',
+    //         'series.required'=>'Requisito Necessario',
+    //         'series.max'=>'Numero caratteri consentiti superato',
+    //         'sale_date.required'=>'Requisito Necessario',
+    //         'type.required'=>'Requisito Necessario',
+    //         'type.max'=>'Numero caratteri consentiti superato',
+    //     ]
+    // );
         $data = $request->all();
+        $valid_data=$this->validation($data); //questa riga richiama il metodo della f.validation e sost stringa 60 to 83
         $newComic = new Comic();
         // $newComic->title = $data["title"];
         // $newComic->description = $data["description"];
@@ -63,7 +91,7 @@ class ComicController extends Controller
         // $newComic->thumb = $data["thumb"];
         // $newComic->price = $data["price"];
         // $newComic->sale_date = $data["sale_date"];
-        $newComic->fill($data); //prende tutti i dati dalla richiesta e li usa per popolare ma prima si validano i dati
+        $newComic->fill($valid_data); //prende tutti i dati dalla richiesta e li usa per popolare ma prima si validano i dati
         $newComic->save();
 
         return redirect()->route('comics.show', $newComic->id);  //per non far riaggiungere l'item piu volte al caricamento
@@ -91,7 +119,8 @@ class ComicController extends Controller
     public function update(Request $request, Comic $comic)
     {
         $data = $request->except('_token' , '_method');
-        $comic->update($data);
+        $valid_data=$this->validation($data);
+        $comic->update($valid_data);
 
         return redirect()->route('comics.show', $comic->id);
     }
