@@ -30,15 +30,30 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "title"=>"required|max:50",
-            "description"=>"required|min:20",
-            "thumb"=>"required",
-            "price"=>"required",
-            "series"=>"required|max:50",
-            "sale_date"=>"required",
-            "type"=>"required|max:50",
-        ]);
+        $request->validate(
+        [
+            'title'=>'required|max:50',
+            'description'=>'required|min:20',
+            'thumb'=>'required',
+            'price'=>'required',
+            'series'=>'required|max:50',
+            'sale_date'=>'required',
+            'type'=>'required|max:50',
+        ],
+        [
+            'title.required'=>'Requisito Necessario',
+            'title.max'=>'Numero caratteri consentiti superato',
+            'description.required'=>'Requisito Necessario',
+            'description.min'=>'Numero caratteri minimi non raggiunto',
+            'thumb.required'=>'Requisito Necessario',
+            'price.required'=>'Requisito Necessario',
+            'series.required'=>'Requisito Necessario',
+            'series.max'=>'Numero caratteri consentiti superato',
+            'sale_date.required'=>'Requisito Necessario',
+            'type.required'=>'Requisito Necessario',
+            'type.max'=>'Numero caratteri consentiti superato',
+        ]
+    );
         $data = $request->all();
         $newComic = new Comic();
         // $newComic->title = $data["title"];
