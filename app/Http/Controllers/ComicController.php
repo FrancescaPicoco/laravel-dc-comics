@@ -22,6 +22,7 @@ class ComicController extends Controller
     public function create()
     {
         return view("comics.create");
+        // return redirect()->route('comics.create');
     }
 
     /**
@@ -29,19 +30,28 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "title"=>"required|max:50",
+            "description"=>"required|min:20",
+            "thumb"=>"required",
+            "price"=>"required",
+            "series"=>"required|max:50",
+            "sale_date"=>"required",
+            "type"=>"required|max:50",
+        ]);
         $data = $request->all();
-
         $newComic = new Comic();
-        $newComic->title = $data["title"];
-        $newComic->description = $data["description"];
-        $newComic->type = $data["type"];
-        $newComic->series = $data["series"];
-        $newComic->thumb = $data["thumb"];
-        $newComic->price = $data["price"];
-        $newComic->sale_date = $data["sale_date"];
+        // $newComic->title = $data["title"];
+        // $newComic->description = $data["description"];
+        // $newComic->type = $data["type"];
+        // $newComic->series = $data["series"];
+        // $newComic->thumb = $data["thumb"];
+        // $newComic->price = $data["price"];
+        // $newComic->sale_date = $data["sale_date"];
+        $newComic->fill($data); //prende tutti i dati dalla richiesta e li usa per popolare ma prima si validano i dati
         $newComic->save();
 
-        return redirect()->route('comics.show', $newComic->id); //comics da errore   //per non far riaggiungere l'item piu volte al caricamento
+        return redirect()->route('comics.show', $newComic->id);  //per non far riaggiungere l'item piu volte al caricamento
     }
 
     /**
