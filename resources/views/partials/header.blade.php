@@ -2,7 +2,7 @@
     <div class="me-auto ms-auto headerCont">
         <section class="d-flex justify-content-between align-items-center">
            
-           <img src="{{URL::asset('../img/dc-logo.png')}}" class="imgHead">
+           <a href="{{URL::to('/')}}"> <img src="{{URL::asset('../img/dc-logo.png')}}" class="imgHead"> </a>
             <nav class="navbar-cont">
               <a href="#" class="mx-2 text-decoration-none text-dark">CHARACTERS</a>
               <a href="#" class="mx-2 text-decoration-none text-dark">COMICS</a>
